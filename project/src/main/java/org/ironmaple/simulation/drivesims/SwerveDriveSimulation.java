@@ -1,7 +1,5 @@
 package org.ironmaple.simulation.drivesims;
 
-import static edu.wpi.first.units.Units.*;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -9,13 +7,16 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.units.measure.*;
-import java.util.Arrays;
-import java.util.function.Supplier;
 import org.dyn4j.geometry.Vector2;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.drivesims.configs.DriveTrainSimulationConfig;
 import org.ironmaple.utils.mathutils.GeometryConvertor;
 import org.ironmaple.utils.mathutils.MapleCommonMath;
+
+import java.util.Arrays;
+import java.util.function.Supplier;
+
+import static edu.wpi.first.units.Units.*;
 
 /**
  *
@@ -91,8 +92,8 @@ public class SwerveDriveSimulation extends AbstractDriveTrainSimulation {
                 .toArray(SwerveModuleSimulation[]::new);
         this.gyroSimulation = config.gyroSimulationFactory.get();
 
-        super.setLinearDamping(1.4);
-        super.setAngularDamping(1.4);
+        super.setLinearDamping(0.7);
+        super.setAngularDamping(0.7);
         this.kinematics = new SwerveDriveKinematics(moduleTranslations);
 
         this.gravityForceOnEachModule = config.robotMass.in(Kilograms) * 9.8 / moduleSimulations.length;
